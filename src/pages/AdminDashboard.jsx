@@ -164,6 +164,48 @@ export default function AdminDashboard() {
                             </>
                         )}
                     </form>
+
+                    {/* Lista Artisti Pubblicati e Reset */}
+                    <div className="mt-12 pt-8 border-t border-white/10">
+                        <h3 className="text-xl font-bold mb-4 flex items-center justify-between">
+                            <span>Artisti Pubblicati</span>
+                            <span className="text-sm bg-primary-gold/20 text-primary-gold px-3 py-1 rounded-full">{artists.filter(a => a.is_published).length}</span>
+                        </h3>
+                        <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
+                            {artists.filter(a => a.is_published).length === 0 ? (
+                                <p className="text-white/50 text-sm">Nessun artista pubblicato.</p>
+                            ) : (
+                                artists.filter(a => a.is_published).map(artist => (
+                                    <div key={artist.id} className="bg-black/40 border border-white/5 p-3 rounded-xl flex items-center justify-between group">
+                                        <div className="flex flex-col">
+                                            <span className="font-bold text-white group-hover:text-primary-gold transition-colors">{artist.nome}</span>
+                                            <span className="text-xs text-white/50">Voto: {artist.voto_admin} • {artist.parola_chiave}</span>
+                                        </div>
+                                        <button
+                                            onClick={async () => {
+                                                if (confirm(`Sei sicuro di voler resettare e RITIRARE la pubblicazione per ${artist.nome}?`)) {
+                                                    try {
+                                                        await updateDoc(doc(db, 'artisti', artist.id), {
+                                                            is_published: false,
+                                                            recensione_admin: "",
+                                                            voto_admin: 0,
+                                                            parola_chiave: ""
+                                                        });
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                        alert("Errore durante il reset.");
+                                                    }
+                                                }
+                                            }}
+                                            className="text-xs font-bold bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white px-3 py-2 rounded-lg transition-colors border border-red-500/20"
+                                        >
+                                            Ritira
+                                        </button>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Colonna Destra: Feedback e Audio */}
