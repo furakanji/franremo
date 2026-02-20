@@ -14,7 +14,7 @@ export default function ArtistCard({ artist, isLatest }) {
             <div className="bg-white/5 rounded-2xl p-4 border border-white/10 hover:border-primary-gold/50 transition-all hover:bg-white/10 flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-primary-gold p-0.5">
                     <img
-                        src={`/assets/cantanti/${artist.nome}.jpg`}
+                        src={`/assets/cantanti/${artist.nome}.png`}
                         alt={artist.nome}
                         className="w-full h-full object-cover rounded-full bg-bg-dark"
                         onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(artist.nome) + '&background=fbbf24&color=0f172a'; }}

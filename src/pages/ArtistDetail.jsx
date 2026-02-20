@@ -159,7 +159,7 @@ export default function ArtistDetail() {
             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-12">
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary-gold p-1 shrink-0">
                     <img
-                        src={`/assets/cantanti/${artist.nome}.jpg`}
+                        src={`/assets/cantanti/${artist.nome}.png`}
                         alt={artist.nome}
                         className="w-full h-full object-cover rounded-full bg-slate-900"
                         onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(artist.nome) + '&background=fbbf24&color=0f172a&size=200'; }}
