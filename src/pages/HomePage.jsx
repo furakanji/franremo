@@ -1,0 +1,39 @@
+import { useArtists } from '../context/ArtistContext';
+import ArtistCard from '../components/ArtistCard';
+
+export default function HomePage() {
+    const { artists, loading } = useArtists();
+
+    if (loading) return (
+        <div className="flex justify-center items-center py-20">
+            <div className="animate-spin w-8 h-8 border-4 border-primary-gold border-t-transparent rounded-full"></div>
+        </div>
+    );
+
+    const publishedArtists = artists
+        .filter(a => a.is_published)
+        .sort((a, b) => {
+            const dateA = a.published_at?.toMillis ? a.published_at.toMillis() : 0;
+            const dateB = b.published_at?.toMillis ? b.published_at.toMillis() : 0;
+            return dateB - dateA; // Cronologico inverso
+        });
+
+    return (
+        <div className="max-w-4xl mx-auto px-4 py-8">
+            <h1 className="text-3xl font-black mb-8">Ultime Pagelle di Fran</h1>
+            {publishedArtists.length === 0 ? (
+                <p className="text-center text-white/50 py-10 bg-white/5 rounded-2xl">Nessun artista ancora pubblicato.</p>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                    {publishedArtists.map((artist, index) => (
+                        <ArtistCard
+                            key={artist.id}
+                            artist={artist}
+                            isLatest={index === 0}
+                        />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}

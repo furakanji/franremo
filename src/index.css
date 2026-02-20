@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-gold: #fbbf24;
+  --color-primary-gold-hover: #f59e0b;
+  --color-bg-dark: #0f172a;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-slate-100 font-sans antialiased selection:bg-primary-gold selection:text-bg-dark;
+  }
+}
