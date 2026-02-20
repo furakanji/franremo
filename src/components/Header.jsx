@@ -13,7 +13,7 @@ export default function Header() {
                         </div>
                         <span className="text-2xl mt-1">RAN</span>
                         <div className="relative inline-flex items-center justify-center ml-1 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 z-10">
-                            <span className="text-4xl text-purple-400 drop-shadow-lg">R</span>
+                            <span className="text-4xl text-sky-300 drop-shadow-lg">R</span>
                             <Music className="absolute -bottom-2 -right-3 w-5 h-5 text-pink-500 animate-pulse group-hover:text-pink-300 drop-shadow-md" />
                         </div>
                         <span className="text-2xl mt-1 ml-1">EMO</span>
