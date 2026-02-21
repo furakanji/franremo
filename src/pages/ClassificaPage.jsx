@@ -34,7 +34,7 @@ export default function ClassificaPage() {
                                     </div>
                                     <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-white/20">
                                         <img
-                                            src={`/assets/cantanti/${artist.nome}.png`}
+                                            src={`/assets/cantanti/${artist.immagine || artist.nome + '.png'}`}
                                             alt={artist.nome}
                                             className="w-full h-full object-cover rounded-full"
                                             onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(artist.nome) + '&background=fbbf24&color=0f172a'; }}
