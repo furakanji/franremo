@@ -290,6 +290,17 @@ export default function ArtistDetail() {
                     )}
                 </div>
             </div>
+
+            {/* Counter Voti */}
+            <div className="mt-12 text-center bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8">
+                <div className="text-sm font-bold text-white/50 uppercase tracking-wider mb-2">Popolarità</div>
+                <div className="text-5xl font-black text-primary-gold mb-1">
+                    {artist.user_votes ? artist.user_votes.length : 0}
+                </div>
+                <div className="text-lg font-bold text-white/70">
+                    {artist.user_votes?.length === 1 ? 'voto ricevuto dal pubblico' : 'voti ricevuti dal pubblico'}
+                </div>
+            </div>
         </div>
     );
 }
