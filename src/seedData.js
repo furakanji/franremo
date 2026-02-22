@@ -15,7 +15,7 @@ export const initialArtists = [
     { nome: "LDA & Aka 7even", canzone: "Poesie clandestine", img: "lda_e_aka 7even.png" },
     { nome: "Leo Gassmann", canzone: "Naturale", img: "leo_gassmann.png" },
     { nome: "Levante", canzone: "Sei tu", img: "levante.png" },
-    { nome: "Luchè", canzone: "Labirinto", img: "luchè.png" },
+    { nome: "Luchè", canzone: "Labirinto", img: "luche.png" },
     { nome: "Malika Ayane", canzone: "Animali notturni", img: "malika_ayane.png" },
     { nome: "Mara Sattei", canzone: "Le cose che non sai di me", img: "mara_sattei.png" },
     { nome: "Maria Antonietta & Colombre", canzone: "La felicità e basta", img: "maria_antonietta_&_colombre.png" },
