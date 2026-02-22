@@ -13,7 +13,7 @@ export default function Seeder() {
         try {
             const artistiRef = collection(db, 'artisti');
             for (const artist of initialArtists) {
-                await setDoc(doc(artistiRef, artist.id), artist);
+                await setDoc(doc(artistiRef, artist.id), artist, { merge: true });
             }
             setMsg('Seeding completed successfully!');
         } catch (e) {
