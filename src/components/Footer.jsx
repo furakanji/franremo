@@ -46,6 +46,19 @@ export default function Footer() {
                     </ul>
                 </div>
             </div>
+            <div className="max-w-4xl mx-auto mt-16 bg-white/5 border border-white/10 p-8 rounded-3xl text-center">
+                <h3 className="text-2xl font-black text-primary-gold mb-3">Hai commenti o suggerimenti?</h3>
+                <p className="text-white/80 mb-6 text-lg">
+                    Ma soprattutto... vuoi fare il bis la serata delle cover?
+                </p>
+                <a
+                    href="mailto:francescocelani@gmail.com?subject=FranRemo%20-%20Idee%20e%20Feedback"
+                    className="inline-block bg-primary-gold text-bg-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
+                >
+                    Scrivimi Qui 📝
+                </a>
+            </div>
+
             <div className="max-w-4xl mx-auto text-center mt-12 text-white/30 text-sm font-medium">
                 FranRemo - A Totally Unnecessary Productions {new Date().getFullYear()}
             </div>
