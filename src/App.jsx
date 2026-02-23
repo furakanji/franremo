@@ -18,7 +18,7 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {!isLandingPage && <Header />}
+      <Header />
       <main className="flex-1 relative">
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -30,7 +30,7 @@ function AppLayout() {
           <Route path="/test-seed" element={<Seeder />} />
         </Routes>
       </main>
-      {!isLandingPage && <Footer />}
+      <Footer />
     </div>
   );
 }

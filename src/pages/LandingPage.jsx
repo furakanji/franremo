@@ -43,13 +43,6 @@ export default function LandingPage() {
 
             <div className="z-10 text-center w-full max-w-lg mx-auto flex flex-col items-center relative">
 
-                <h1 className="text-4xl md:text-5xl font-black text-primary-gold mb-2 tracking-tighter uppercase">
-                    FranRemo 2026
-                </h1>
-                <p className="text-white/60 mb-8 font-bold uppercase tracking-widest text-sm md:text-base">
-                    La Prima Serata
-                </p>
-
                 {/* Retro TV Container */}
                 <div className="w-full aspect-video bg-gray-800 p-3 md:p-5 rounded-3xl border-8 border-gray-700 shadow-2xl relative mb-8">
                     {/* TV Antenna/Details */}
@@ -78,7 +71,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Countdown / Entry Button */}
-                <div className="w-full bg-white/5 border border-white/10 p-6 md:p-8 rounded-3xl backdrop-blur-sm relative">
+                <div className="w-full bg-white/5 border border-white/10 p-6 md:p-8 rounded-3xl backdrop-blur-sm relative mb-6">
                     {isOpen ? (
                         <div className="transition-opacity duration-1000 ease-in opacity-100">
                             <h2 className="text-2xl md:text-3xl font-black text-white mb-6">Ci Siamo! 💐</h2>
@@ -115,6 +108,10 @@ export default function LandingPage() {
                         </div>
                     )}
                 </div>
+
+                <p className="text-center font-bold text-primary-gold text-lg tracking-wide uppercase mt-4 mb-12">
+                    Le tue pagelle preferite stanno per arrivare
+                </p>
 
             </div>
         </div>
