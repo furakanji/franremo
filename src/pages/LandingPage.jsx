@@ -51,10 +51,10 @@ export default function LandingPage() {
                         <div className="w-1 h-8 bg-gray-600 -rotate-45 origin-bottom"></div>
                     </div>
                     {/* TV Screen */}
-                    <div className="w-full h-full bg-black rounded-lg overflow-hidden border-4 border-gray-900 relative shadow-inner">
+                    <div className="w-full h-full bg-black rounded-lg overflow-hidden border-4 border-gray-900 relative shadow-inner group">
                         <iframe
                             className="w-full h-full absolute inset-0 scale-[1.02]"
-                            src="https://www.youtube.com/embed/videoseries?list=PLCfn5VFZNxKzD1ieo2JSACEcC2Kd5QfVm&autoplay=1&mute=1&playsinline=1&loop=1&controls=0&modestbranding=1"
+                            src="https://www.youtube.com/embed/videoseries?list=PLCfn5VFZNxKzD1ieo2JSACEcC2Kd5QfVm&autoplay=1&playsinline=1&loop=1&controls=0&modestbranding=1"
                             title="YouTube video player"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
