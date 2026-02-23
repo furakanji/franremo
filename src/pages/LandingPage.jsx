@@ -4,16 +4,9 @@ import { useNavigate } from 'react-router-dom';
 export default function LandingPage() {
     const navigate = useNavigate();
 
-    // Set to 20:30 today or tomorrow depending on the user's need.
-    // For now, let's pick 20:30 of the CURRENT day.
+    // Date is set to February 24, 2026 at 20:30
     const [targetDate, setTargetDate] = useState(() => {
-        const now = new Date();
-        const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 30, 0);
-
-        // If it's already past 20:30 today, maybe they mean tomorrow.
-        // But let's just use today's 20:30.
-        // If they want a specific date, they can change these values.
-        return target;
+        return new Date(2026, 1, 24, 20, 30, 0); // Month is 0-indexed (1 = Feb)
     });
 
     const [timeLeft, setTimeLeft] = useState(0);
