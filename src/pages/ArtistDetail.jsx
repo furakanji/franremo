@@ -173,7 +173,19 @@ export default function ArtistDetail() {
                         <span className="absolute -top-3 left-6 bg-primary-gold text-bg-dark px-3 py-1 text-xs font-black uppercase rounded-full shadow-lg">
                             La Sentenza di Fran
                         </span>
-                        <p className="italic text-lg mb-4 text-white/90">"{artist.recensione_admin || "Nessuna recensione ancora."}"</p>
+                        <p className="italic text-lg mb-4 text-white/90">
+                            "
+                            {artist.recensione_admin ? (
+                                artist.recensione_admin.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+                                    part.match(/https?:\/\/[^\s]+/) ? (
+                                        <a key={i} href={part} target="_blank" rel="noreferrer" className="text-primary-gold underline hover:text-white transition-colors">
+                                            {part}
+                                        </a>
+                                    ) : part
+                                )
+                            ) : "Nessuna recensione ancora."}
+                            "
+                        </p>
                         <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start">
                             <div className="bg-primary-gold/20 border border-primary-gold/40 text-primary-gold px-4 py-2 rounded-xl text-center">
                                 <div className="text-[10px] uppercase font-bold tracking-wider opacity-80">Voto</div>
