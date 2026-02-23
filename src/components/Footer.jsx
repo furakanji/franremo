@@ -52,7 +52,7 @@ export default function Footer() {
                     Ma soprattutto... vuoi fare il bis la serata delle cover?
                 </p>
                 <a
-                    href="mailto:ciao@sanremo.live?subject=FranRemo%20-%20Idee%20e%20Feedback"
+                    href="mailto:ciao@franremo.live?subject=FranRemo%20-%20Idee%20e%20Feedback"
                     className="inline-block bg-primary-gold text-bg-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
                 >
                     Scrivimi Qui 📝
