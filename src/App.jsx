@@ -10,6 +10,7 @@ import ClassificaPage from './pages/ClassificaPage';
 import ArtistDetail from './pages/ArtistDetail';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminArtistFeedback from './pages/AdminArtistFeedback';
 import Seeder from './Seeder';
 
 function AppLayout() {
@@ -27,6 +28,7 @@ function AppLayout() {
           <Route path="/artista/:id" element={<ArtistDetail />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/feedback/:artistId" element={<AdminArtistFeedback />} />
           <Route path="/test-seed" element={<Seeder />} />
         </Routes>
       </main>

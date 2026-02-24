@@ -212,45 +212,45 @@ export default function AdminDashboard() {
                 <div className="bg-slate-900 border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col max-h-[800px]">
                     <h2 className="text-2xl font-bold mb-6 flex items-center justify-between">
                         <span>Feedback dal Popolo</span>
-                        <span className="text-sm bg-white/10 px-3 py-1 rounded-full">{messages.length}</span>
+                        <span className="text-sm bg-white/10 px-3 py-1 rounded-full">{messages.length} totali</span>
                     </h2>
 
-                    <div className="flex-1 overflow-y-auto pr-2 space-y-4">
-                        {loadingMessages ? (
+                    <div className="flex-1 overflow-y-auto pr-2 space-y-3">
+                        {loadingMessages || artistsLoading ? (
                             <div className="text-white/50 text-center py-10">Caricamento messaggi...</div>
                         ) : messages.length === 0 ? (
                             <div className="text-white/50 text-center py-10 text-lg">Nessun feedback ricevuto.</div>
                         ) : (
-                            messages.map(msg => (
-                                <div key={msg.id} className="bg-black/40 border border-white/5 rounded-2xl p-4 group relative">
-                                    <button onClick={() => deleteMessage(msg.id)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300">
-                                        ✕
-                                    </button>
-                                    <div className="flex justify-between items-start mb-2">
-                                        <span className="text-xs font-bold text-primary-gold uppercase bg-primary-gold/10 px-2 py-1 rounded-md">
-                                            Su {msg.artist_nome}
-                                        </span>
-                                        <span className="text-[10px] text-white/40">
-                                            {msg.timestamp ? new Date(msg.timestamp.toDate()).toLocaleString('it-IT') : 'Adesso'}
-                                        </span>
-                                    </div>
+                            artists.map(artist => {
+                                const artistMessagesForCount = messages.filter(m => m.artist_id === artist.id);
+                                const count = artistMessagesForCount.length;
 
-                                    {msg.type === 'audio' ? (
-                                        <div className="mt-4 bg-white/5 p-4 rounded-xl border border-white/10 flex flex-col gap-3">
-                                            <div className="font-bold text-sm text-purple-400 flex items-center gap-2">
-                                                <span>🎙️</span> Nuova performance vocale (10s)
+                                if (count === 0) return null;
+
+                                const latestAudio = artistMessagesForCount.find(m => m.type === 'audio');
+
+                                return (
+                                    <div key={artist.id} className="bg-black/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:border-white/10 transition-colors">
+                                        <div className="flex flex-col">
+                                            <span className="font-bold text-lg text-white group-hover:text-primary-gold transition-colors">{artist.nome}</span>
+                                            <div className="flex items-center gap-3 mt-1 text-sm text-white/50">
+                                                <span>{count} messagg{count === 1 ? 'io' : 'i'}</span>
+                                                {latestAudio && (
+                                                    <span className="flex items-center gap-1 text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded text-xs font-bold">
+                                                        <span>🎙️</span> Audio presenti
+                                                    </span>
+                                                )}
                                             </div>
-                                            <audio controls className="w-full h-10 outline-none rounded-full">
-                                                <source src={msg.audio_url} type="video/webm" />
-                                                Il tuo browser non supporta l'audio.
-                                            </audio>
-                                            <a href={msg.audio_url} target="_blank" rel="noreferrer" className="text-xs text-white/50 underline hover:text-white">Apri link originale</a>
                                         </div>
-                                    ) : (
-                                        <p className="text-white/90 italic leading-relaxed text-sm mt-3">"{msg.messaggio}"</p>
-                                    )}
-                                </div>
-                            ))
+                                        <button
+                                            onClick={() => navigate(`/admin/feedback/${artist.id}`)}
+                                            className="bg-primary-gold text-bg-dark font-black px-4 py-2 rounded-xl hover:scale-105 transition-transform text-sm uppercase"
+                                        >
+                                            Vedi Feedback
+                                        </button>
+                                    </div>
+                                );
+                            })
                         )}
                     </div>
                 </div>
