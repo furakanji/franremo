@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 export default function LandingPage() {
     const navigate = useNavigate();
 
-    // Date is set to February 24, 2026 at 20:30
+    // Date is set to February 24, 2026 at 20:45
     const [targetDate, setTargetDate] = useState(() => {
-        return new Date(2026, 1, 24, 20, 30, 0); // Month is 0-indexed (1 = Feb)
+        return new Date(2026, 1, 24, 20, 45, 0); // Month is 0-indexed (1 = Feb)
     });
 
     const [timeLeft, setTimeLeft] = useState(0);
