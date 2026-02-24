@@ -9,7 +9,8 @@ const firebaseConfig = {
     projectId: "franremo-7333c",
     storageBucket: "franremo-7333c.firebasestorage.app",
     messagingSenderId: "791102322727",
-    appId: "1:791102322727:web:f27e5ba8490d60bb1a7602"
+    appId: "1:791102322727:web:f27e5ba8490d60bb1a7602",
+    measurementId: "G-TDWFMZE5JK"
 };
 
 // Initialize Firebase
