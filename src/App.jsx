@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ArtistProvider } from './context/ArtistContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Pages
-import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import ClassificaPage from './pages/ClassificaPage';
 import ArtistDetail from './pages/ArtistDetail';
@@ -14,16 +13,13 @@ import AdminArtistFeedback from './pages/AdminArtistFeedback';
 import Seeder from './Seeder';
 
 function AppLayout() {
-  const location = useLocation();
-  const isLandingPage = location.pathname === '/';
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 relative">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/classifica" element={<ClassificaPage />} />
           <Route path="/artista/:id" element={<ArtistDetail />} />
           <Route path="/admin/login" element={<AdminLogin />} />
