@@ -193,7 +193,7 @@ export default function ArtistDetail() {
                             </div>
                             {artist.parola_chiave && (
                                 <div className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-center">
-                                    <div className="text-[10px] uppercase font-bold tracking-wider text-white/50">Motivo</div>
+                                    <div className="text-[10px] uppercase font-bold tracking-wider text-white/50">In una parola:</div>
                                     <div className="text-lg font-bold leading-none mt-1 uppercase text-white/90">{artist.parola_chiave}</div>
                                 </div>
                             )}
