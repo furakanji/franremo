@@ -39,7 +39,7 @@ export default function ArtistDetail() {
         try {
             const docRef = doc(db, 'artisti', id);
             await updateDoc(docRef, {
-                user_votes: arrayUnion(vote)
+                user_votes: arrayUnion(Number(vote))
             });
             localStorage.setItem(`voted_${id}`, 'true');
             alert(`Hai votato ${vote}! Grazie per il tuo contributo.`);

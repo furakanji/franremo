@@ -10,7 +10,7 @@ export default function ClassificaPage() {
         </div>
     );
 
-    const getAvg = (arr) => arr?.length ? (arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+    const getAvg = (arr) => arr?.length ? (arr.reduce((a, b) => a + Number(b), 0) / arr.length) : 0;
 
     const publishedArtists = artists
         .filter(a => a.is_published)

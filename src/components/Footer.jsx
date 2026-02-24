@@ -11,7 +11,7 @@ export default function Footer() {
     const podioFran = [...published].sort((a, b) => (b.voto_admin || 0) - (a.voto_admin || 0)).slice(0, 3);
 
     // Podio Popoloso (media voti utenti)
-    const getAvg = (arr) => arr?.length ? (arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+    const getAvg = (arr) => arr?.length ? (arr.reduce((a, b) => a + Number(b), 0) / arr.length) : 0;
     const podioPopoloso = [...published].sort((a, b) => getAvg(b.user_votes) - getAvg(a.user_votes)).slice(0, 3);
 
     return (
