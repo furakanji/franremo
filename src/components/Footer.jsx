@@ -8,11 +8,11 @@ export default function Footer() {
     const published = artists.filter(a => a.is_published);
 
     // Podio di Fran (voto admin)
-    const podioFran = [...published].sort((a, b) => (b.voto_admin || 0) - (a.voto_admin || 0)).slice(0, 3);
+    const podioFran = [...published].sort((a, b) => (b.voto_admin || 0) - (a.voto_admin || 0)).slice(0, 5);
 
     // Podio Popoloso (media voti utenti)
     const getAvg = (arr) => arr?.length ? (arr.reduce((a, b) => a + Number(b), 0) / arr.length) : 0;
-    const podioPopoloso = [...published].sort((a, b) => getAvg(b.user_votes) - getAvg(a.user_votes)).slice(0, 3);
+    const podioPopoloso = [...published].sort((a, b) => getAvg(b.user_votes) - getAvg(a.user_votes)).slice(0, 5);
 
     return (
         <footer className="bg-slate-900 border-t border-white/5 p-8 mt-[10vh]">
@@ -23,9 +23,9 @@ export default function Footer() {
                     </h3>
                     <ul className="space-y-3">
                         {podioFran.map((artist, i) => (
-                            <li key={artist.id} className="flex justify-between items-center bg-white/5 px-4 py-2 rounded-lg">
-                                <span className="font-semibold text-lg">{i + 1}. {artist.nome}</span>
-                                <span className="font-bold text-primary-gold">{artist.voto_admin}/10</span>
+                            <li key={artist.id} className={`flex justify-between items-center px-4 py-2 rounded-lg ${i < 3 ? 'bg-white/5' : 'bg-transparent border border-white/5 opacity-50'}`}>
+                                <span className={`${i < 3 ? 'font-semibold text-lg' : 'font-medium text-base'}`}>{i + 1}. {artist.nome}</span>
+                                <span className={`font-bold ${i < 3 ? 'text-primary-gold' : 'text-primary-gold/70'}`}>{artist.voto_admin}/10</span>
                             </li>
                         ))}
                         {podioFran.length === 0 && <span className="text-white/50 italic">Ancora nessun voto.</span>}
@@ -37,9 +37,9 @@ export default function Footer() {
                     </h3>
                     <ul className="space-y-3">
                         {podioPopoloso.map((artist, i) => (
-                            <li key={artist.id} className="flex justify-between items-center bg-white/5 px-4 py-2 rounded-lg">
-                                <span className="font-semibold text-lg">{i + 1}. {artist.nome}</span>
-                                <span className="font-bold text-primary-gold">{getAvg(artist.user_votes).toFixed(1)}/10</span>
+                            <li key={artist.id} className={`flex justify-between items-center px-4 py-2 rounded-lg ${i < 3 ? 'bg-white/5' : 'bg-transparent border border-white/5 opacity-50'}`}>
+                                <span className={`${i < 3 ? 'font-semibold text-lg' : 'font-medium text-base'}`}>{i + 1}. {artist.nome}</span>
+                                <span className={`font-bold ${i < 3 ? 'text-primary-gold' : 'text-primary-gold/70'}`}>{getAvg(artist.user_votes).toFixed(1)}/10</span>
                             </li>
                         ))}
                         {podioPopoloso.length === 0 && <span className="text-white/50 italic">Ancora nessun voto.</span>}
