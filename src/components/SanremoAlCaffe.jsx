@@ -29,14 +29,14 @@ export default function SanremoAlCaffe() {
 
         try {
             const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
             const result = await model.generateContent(prompt);
             const response = await result.response;
             setSummary(response.text());
         } catch (e) {
             console.error(e);
-            setError("La macchinetta del caffè si è inceppata. Riprova più tardi!");
+            setError("Errore Gemini: " + (e.message || "Errore sconosciuto"));
         } finally {
             setLoading(false);
         }
@@ -61,7 +61,7 @@ export default function SanremoAlCaffe() {
                         onClick={generateSummary}
                         className="bg-primary-gold text-bg-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2 mx-auto"
                     >
-                        <Sparkles size={18} /> Eroga
+                        <Sparkles size={18} /> Escila
                     </button>
                 )}
 
