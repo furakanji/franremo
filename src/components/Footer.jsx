@@ -1,4 +1,5 @@
 import { useArtists } from '../context/ArtistContext';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     const { artists, loading } = useArtists();
@@ -59,8 +60,9 @@ export default function Footer() {
                 </a>
             </div>
 
-            <div className="max-w-4xl mx-auto text-center mt-12 text-white/30 text-sm font-medium">
-                FranRemo - A Totally Unnecessary Productions {new Date().getFullYear()}
+            <div className="max-w-4xl mx-auto flex flex-col items-center justify-center mt-12 text-white/30 text-sm font-medium gap-2">
+                <span>FranRemo - A Totally Unnecessary Productions {new Date().getFullYear()}</span>
+                <Link to="/admin/dashboard" className="hover:text-white transition-colors text-xs opacity-50">Area Admin</Link>
             </div>
         </footer>
     );
