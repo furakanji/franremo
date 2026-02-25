@@ -20,7 +20,10 @@ export default function HomePage() {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-black mb-8">Ultime Pagelle di Fran</h1>
+            <h1 className="text-3xl font-black mb-2">Ultime Pagelle di Fran</h1>
+            <p className="text-white/70 mb-8 text-sm md:text-base leading-relaxed">
+                Trovate tutte le pagelle cliccando sui cantanti e continuate a lasciare i vostri commenti e soprattutto le vostre interpretazioni dei pezzi.
+            </p>
             {publishedArtists.length === 0 ? (
                 <p className="text-center text-white/50 py-10 bg-white/5 rounded-2xl">Nessun artista ancora pubblicato.</p>
             ) : (
