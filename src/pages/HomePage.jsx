@@ -13,9 +13,12 @@ export default function HomePage() {
     const publishedArtists = artists
         .filter(a => a.is_published)
         .sort((a, b) => {
+            const voteDiff = (b.voto_admin || 0) - (a.voto_admin || 0);
+            if (voteDiff !== 0) return voteDiff;
+
             const dateA = a.published_at?.toMillis ? a.published_at.toMillis() : 0;
             const dateB = b.published_at?.toMillis ? b.published_at.toMillis() : 0;
-            return dateB - dateA; // Cronologico inverso
+            return dateB - dateA; // Cronologico inverso a parità di voto
         });
 
     return (
