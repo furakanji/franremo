@@ -1,45 +1,43 @@
 import { useState } from 'react';
-import { useArtists } from '../context/ArtistContext';
 import { Coffee, Sparkles } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const STATIC_REVIEWS = [
+    "C’è qualcosa di profondamente malinconico nel veder trionfare la 'Magica favola' di Arisa mentre il Paese reale affoga nel pop di plastica. Brava, per carità, ma la vera scossa arriva da Fulminacci: uno dei pochi che sa ancora scrivere senza usare il manuale delle giovani marmotte. Fedez e Masini? Un’operazione simpatia che puzza di algoritmo lontano un miglio. Voto: 7 alla musica, 4 al coraggio.",
+    "Che spettacolo, amici! Un’emozione pazzesca vedere Serena Brancale incendiare l’Ariston con quella voce che sembra venire dal paradiso del jazz. È stato un Festival di sorrisi, di bellezza e di canzoni che restano nel cuore. E Ditonellapiaga? Una ventata di freschezza divina! Un bacio grande a tutti, è stato tutto... favoloso!",
+    "La liturgia contiana procede senza intoppi, tra una Pausini istituzionale e un Can Yaman messo lì come soprammobile di lusso. La musica? Un rumore di fondo. La classifica premia il già sentito: Arisa gioca a fare la fatina, Fedez cerca una redenzione catodica accanto a un Masini insolitamente rassegnato. La TV italiana è un eterno ritorno dell'uguale, un acquario dove i pesci cantano sempre la stessa bolla.",
+    "Possiamo parlare di Fedez che per l’ennesima volta si presenta a Sanremo con la faccia di chi sta facendo un favore all’umanità? La coppia con Masini è il crossover che nessuno aveva chiesto, un po’ come l’ananas sulla pizza. Intanto Ditonellapiaga si mangia il palco con un’ironia che metà degli altri concorrenti non saprebbe nemmeno compitare. La classifica della sala stampa? Un mix di sensi di colpa e quote rosa ben gestite.",
+    "Iniziamo con un dato di fatto: la maratona Sanremo 2026 parte con un colpo di scena. Brancale e Fulminacci scavalcano i big 'tradizionali' nelle preferenze dei giornalisti. C’è un tema di rinnovamento generazionale che non può essere ignorato. Arisa tiene la posizione, ma attenzione al voto del pubblico che potrebbe ribaltare tutto nelle prossime ore. Breve pausa, poi torniamo con i grafici.",
+    "Buonasera. Qui a Sanremo abbiamo visto un’Italia che vuole cantare, ma anche un’Italia che riflette. La vittoria provvisoria di Arisa ci dice che il pubblico cerca rassicurazione. Ma la domanda che pongo ai miei ospiti è: la strana coppia Fedez-Masini rappresenta davvero il sentimento popolare di questo 2026? Un connubio curioso, quasi un governo di larghe intese della musica leggera.",
+    "Il 'Metodo Conti' non delude: un po’ di democristianeria musicale e un pizzico di populismo radiofonico. Vedere Fedez in cima alla classifica dopo mesi di paginate sui social fa quasi sorridere: è il trasformismo elevato a nota musicale. Per fortuna c’è J-Ax che con 'Italia Starter Pack' fa quello che i giornalisti non hanno più il coraggio di fare: dirci quanto siamo ridicoli. Ma ovviamente i soliti noti preferiscono la 'favola' di Arisa.",
+    "FLASH! L’Ariston è diventato una succursale di Tik Tok! La Brancale 'spettina' tutti con un pezzo che fa tremare le poltrone, mentre il povero Masini sembra chiedersi che fine abbia fatto la sua 'disperazione' tra i tatuaggi di Fedez. Ditonellapiaga è la vera regina della notte, acida quanto basta per non farci addormentare. E Conti? Sorride, s'abbronza e incassa lo share. Cafonal Ariston Edition!",
+    "C'è un'eleganza sottile nel modo in cui Arisa abita il palco, una fragilità che diventa forza politica in un mondo di urla. Le donne di questo Festival, dalla Brancale alla Maria Antonietta, dimostrano che non serve il trucco pesante per farsi sentire. È un Sanremo che finalmente smette di chiedere scusa per la propria intelligenza, anche se la classifica deve ancora fare i conti con i vecchi fantasmi del maschilismo pop.",
+    "Musicalmente la serata è stata una sorpresa. Serena Brancale ha portato una complessità armonica che mancava da anni, un jazz-pop di caratura internazionale. Fulminacci si conferma il miglior erede della scuola romana, con una scrittura asciutta e mai banale. La Top 5 riflette un buon equilibrio tra ricerca e melodia italiana, anche se la coppia Fedez-Masini appare più come un esperimento di laboratorio che come una reale urgenza artistica.",
+    "Lo dico chiaramente: questa classifica è un insulto all'intelligenza. Mettere Fedez e Masini tra i primi cinque significa che abbiamo smesso di ascoltare le canzoni e guardiamo solo i follower. L'unica nota di merito è Ditonellapiaga, l'unica che ha capito che il pop deve essere frizione, non lubrificante. Il resto è noia mascherata da 'favola'. Mi troverete al bar dell'Ariston a bere per dimenticare.",
+    "Mi ricorda il 1984, quando le giurie cercavano la novità ma finivano per premiare l'usato sicuro. Arisa ha la stoffa delle grandi dive di una volta, ma con quella punta di follia contemporanea. La Brancale è la vera rivelazione: ha una tecnica che farebbe impallidire i veterani. Fedez? Un ragazzo intelligente, ma Masini è un'altra categoria vocale. Speriamo che il duetto non diventi un duello.",
+    "Un Festival molto italiano, ma con un occhio all'Europa. Fulminacci è il genere di artista che ci fa sentire moderni senza sforzo. La Top 5 è come una buona lista della spesa: c'è l'ingrediente classico (Arisa), quello esotico (Brancale) e quello che compri solo per curiosità (Fedez & Masini). Un'organizzazione impeccabile, forse fin troppo: ogni tanto la perfezione annoia quanto un tè senza limone.",
+    "C’è un filo invisibile che lega le canzoni di questa sera: la ricerca di un posto nel mondo. Arisa lo trova in una favola, Ditonellapiaga in un fastidio che diventa identità. Mi ha colpito la voce di Serena Brancale, una voce che non chiede permesso ma si prende tutto lo spazio dell'anima. È un Sanremo che somiglia a un diario intimo, scritto a più mani, in una notte di febbraio che profuma di futuro.",
+    "Ma cos'è questa classifica? Capre! Capre musicali! Serena Brancale è l'unica che ha un senso estetico, una struttura, un'architettura sonora! Il resto è melma, è fango, è la morte dell'arte! Fedez e Masini? Un ossimoro vivente, un insulto alla dignità della melodia! Ditonellapiaga? Almeno ha un nome che evoca una punizione divina per chi ascolta queste lagne! Studiate la musica, ignoranti!",
+    "Pezzi che spaccheranno in radio, garantito! Fulminacci ha un ritornello che non ti esce più dalla testa, perfetto per l'heavy rotation. Arisa torna a fare l'Arisa e la sala stampa la premia giustamente. La coppia Fedez-Masini è il 'power play' della stagione: piacerà a tutte le età. Un Festival che gira veloce, con un ritmo pazzesco. Franremo dice che sono i favoriti e io non posso che confermare!",
+    "Niente fronzoli: Arisa canta meglio di tutti e lo sa. Fulminacci scrive meglio di tutti e lo sa. La Brancale è una spanna sopra tecnicamente. Questa Top 5 è onesta, premia chi sa stare sul palco senza aver bisogno di troppi effetti speciali. Sorpresa Ditonellapiaga: cattiva, ritmata, centrata. Un Festival meno 'monocorde' del solito, grazie al cielo.",
+    "Dobbiamo chiederci cosa c'è dietro il posizionamento di certi nomi. La scalata di Fedez e Masini puzza di strategia discografica massiccia, un tentativo di blindare il podio fin dalla prima sera. Ma la sala stampa ha dato un segnale forte premiando la Brancale e Fulminacci: la qualità indipendente può ancora bucare lo schermo. Terremo gli occhi aperti sulle prossime votazioni.",
+    "È stata una notte di fantasmi e di rinascite. Masini che presta il suo dolore alla rabbia social di Fedez è un romanzo di formazione mancato. Ma la musica vera è passata tra le dita di Fulminacci, in quel suo modo di raccontare la 'stupida sfortuna' di essere vivi oggi. Arisa è un monumento che respira, una creatura che appartiene a un altro tempo, mentre la Brancale ci ricorda che il ritmo è l'unica rivoluzione possibile.",
+    "Ehilà amici! Che serata incredibile a Sanremo! Ho visto tante belle canzoni e dei giovani bravissimi come Fulminacci e Serena Brancale. Arisa poi ha una voce magica, davvero! E che dire di Fedez e Marco Masini? Un'accoppiata simpatica! Mi sono divertito molto a seguire tutto con voi. Un grande abbraccio a tutti! State bene? Fatemi sapere!"
+];
 
 export default function SanremoAlCaffe() {
-    const { artists } = useArtists();
     const [summary, setSummary] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
-    const generateSummary = async () => {
-        const published = artists.filter(a => a.is_published);
-        if (published.length < 3) {
-            setError("Servono almeno 3 artisti pubblicati per un caffè coi fiocchi!");
-            return;
-        }
-
+    const generateSummary = () => {
         setLoading(true);
-        setError('');
         setSummary('');
 
-        // Pick 3 random artists
-        const shuffled = [...published].sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 3);
-
-        const prompt = `Agisci come un critico musicale contemporaneo simpatico e divertente. Scrivi un piccolo riassunto di massimo 50 parole complessive su questi 3 artisti a Sanremo, basandoti sulle loro recensioni:\n` +
-            selected.map(a => `- ${a.nome}: "${a.recensione_admin || a.canzone}"`).join('\n');
-
-        try {
-            const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            setSummary(response.text());
-        } catch (e) {
-            console.error(e);
-            setError("Errore Gemini: " + (e.message || "Errore sconosciuto"));
-        } finally {
+        // Simulate a tiny bit of loading time for effect
+        setTimeout(() => {
+            const randomIndex = Math.floor(Math.random() * STATIC_REVIEWS.length);
+            setSummary(STATIC_REVIEWS[randomIndex]);
             setLoading(false);
-        }
+        }, 800);
     };
 
     return (
@@ -72,16 +70,10 @@ export default function SanremoAlCaffe() {
                     </div>
                 )}
 
-                {error && (
-                    <div className="text-red-400 mt-4 bg-red-400/10 p-3 rounded-lg text-sm font-semibold">
-                        {error}
-                    </div>
-                )}
-
                 {summary && !loading && (
                     <div className="mt-6 bg-bg-dark/50 border border-primary-gold/30 rounded-2xl p-6 text-left">
                         <p className="text-white/90 text-lg md:text-xl leading-relaxed font-serif italic mb-4">
-                            "{summary.replace(/"/g, '').trim()}"
+                            "{summary}"
                         </p>
                         <div className="flex justify-center mt-6">
                             <button
