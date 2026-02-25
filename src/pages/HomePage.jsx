@@ -1,5 +1,6 @@
 import { useArtists } from '../context/ArtistContext';
 import ArtistCard from '../components/ArtistCard';
+import SanremoAlCaffe from '../components/SanremoAlCaffe';
 
 export default function HomePage() {
     const { artists, loading } = useArtists();
@@ -27,6 +28,8 @@ export default function HomePage() {
             <p className="text-white/70 mb-8 text-sm md:text-base leading-relaxed">
                 Trovate tutte le pagelle cliccando sui cantanti e continuate a lasciare i vostri commenti e soprattutto le vostre interpretazioni dei pezzi.
             </p>
+
+            <SanremoAlCaffe />
             {publishedArtists.length === 0 ? (
                 <p className="text-center text-white/50 py-10 bg-white/5 rounded-2xl">Nessun artista ancora pubblicato.</p>
             ) : (
